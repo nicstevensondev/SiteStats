@@ -15,30 +15,44 @@ fetch(chrome.runtime.getURL("config.json"))
 
         const docClient = new AWS.DynamoDB.DocumentClient();
 
-        function recordPageChange() {
+        function recordEvent(eventType) {
             const currentPage = window.location.href;
         
             const params = {
                 TableName: "search_log",
                 Item: {
                     timestamp: new Date().toISOString(),
-                    eventType: "page_change",
+                    eventType: eventType,
                     pageAddress: currentPage,
                 },
             };
         
             docClient.put(params, (err, data) => {
                 if (err) {
-                    console.error("Error saving event:", JSON.stringify(err, null, 2));
+                    console.error(`Error saving ${eventType} event:`, JSON.stringify(err, null, 2));
                 } else {
-                    console.log("Event recorded:", JSON.stringify(data, null, 2));
+                    console.log(`${eventType} event recorded:`, JSON.stringify(data, null, 2));
                 }
             });
         }
         
         window.addEventListener("load", function () {
-            recordPageChange();
+            recordEvent("page_load");
         });
-
+        
+        window.addEventListener("beforeunload", function () {
+            recordEvent("page_unload");
+        });
+        
+        let scrollTimeout = null;
+        window.addEventListener("scroll", function () {
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+            // Trigger only once every second during scrolling
+            scrollTimeout = setTimeout(() => {
+                recordEvent("scroll");
+            }, 1000); 
+        });
     })
     .catch((err) => console.error("Error loading config.json or configuring AWS:", err));

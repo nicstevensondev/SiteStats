@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "Event Recorder Extension",
+    "version": "1.0",
+    "permissions": ["scripting", "storage"],
+    "host_permissions": ["<all_urls>"],
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"], 
+        "js": ["aws-sdk.min.js", "content.js"]
+      }
+    ],
+    "icons": {
+        "16": "icon.png"
+    },
+    "web_accessible_resources": [
+      {
+        "resources": ["config.json"],
+        "matches": ["<all_urls>"]
+      }
+    ]
+  }
+  
+  

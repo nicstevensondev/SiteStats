@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Event Recorder Extension",
     "version": "1.0",
-    "permissions": ["scripting", "storage"],
+    "permissions": ["activeTab", "scripting", "storage"],
     "host_permissions": ["<all_urls>"],
     "content_scripts": [
       {
@@ -10,6 +10,10 @@
         "js": ["aws-sdk.min.js", "content.js"]
       }
     ],
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": "icon.png"
+    },
     "icons": {
         "16": "icon.png"
     },

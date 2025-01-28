@@ -54,5 +54,13 @@ fetch(chrome.runtime.getURL("config.json"))
                 recordEvent("scroll");
             }, 1000); 
         });
+
+        chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+            if (request.action === "recordCustomEvent") {
+                // Example custom event to record
+                recordEvent("custom_event");
+                sendResponse({ success: true });
+            }
+        });        
     })
     .catch((err) => console.error("Error loading config.json or configuring AWS:", err));

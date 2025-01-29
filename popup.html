@@ -1,14 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>DynamoDB Counter</title>
-    <script src="aws-sdk.min.js"></script>
-    <script src="popup.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent Events</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 10px; width: 300px; }
+        button { padding: 8px; margin-bottom: 10px; cursor: pointer; }
+        ul { padding: 0; list-style-type: none; }
+        li { margin: 5px 0; font-size: 14px; }
+    </style>
 </head>
 <body>
-    <h1>Table Counter</h1>
-    <button id="fetch-count">Get Table Count</button>
-    <p id="result"></p>
+    <h2>Recent Events</h2>
+    <button id="fetch-events">Load Recent Events</button>
+    <div id="result">Click the button to fetch data.</div>
+
+    <script src="aws-sdk.min.js"></script>
+    <script src="popup.js"></script>
 </body>
 </html>
+
 

@@ -3,18 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Visited Sites</title>
+    <title>Site Stats</title>
     <link rel="stylesheet" href="popup.css">
+    <script src="aws-sdk.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h2>Top Visited Sites</h2>
-        <button id="fetch-events">Load Top Sites</button>
-        <div id="result">Click the button to fetch data.</div>
-        <ul id="event-list"></ul>
-    </div>
-
-    <script src="aws-sdk.min.js"></script>
+    <button id="fetch-events">Fetch Site Stats</button>
+    <div id="result"></div>
     <script src="popup.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Event Recorder Extension",
+    "name": "Site Stats",
     "version": "1.0",
     "permissions": ["activeTab", "scripting", "storage"],
     "host_permissions": ["<all_urls>"],
